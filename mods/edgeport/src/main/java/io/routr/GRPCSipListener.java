@@ -101,7 +101,7 @@ public class GRPCSipListener implements SipListener {
           var host = interfaces.get(0).getAddress().getHostAddress();
 
           if (System.getenv("IGNORE_LOOPBACK_FROM_LOCALNETS") != null
-              && System.getenv("IGNORE_LOOPBACK_FROM_LOCALNETS").equalsIgnoreCase("true")
+              && "true".equalsIgnoreCase(System.getenv("IGNORE_LOOPBACK_FROM_LOCALNETS"))
               && host.startsWith("127.0.0.1")) {
             continue;
           }
@@ -153,13 +153,13 @@ public class GRPCSipListener implements SipListener {
     this.headerFactory = SipFactory.getInstance().createHeaderFactory();
 
     if (System.getenv("CONSOLE_PUBLISHER_ENABLED") != null
-        && System.getenv("CONSOLE_PUBLISHER_ENABLED").equalsIgnoreCase("true")) {
+        && "true".equalsIgnoreCase(System.getenv("CONSOLE_PUBLISHER_ENABLED"))) {
       publishers.add(new ConsolePublisher());
       LOG.info("console publisher enabled");
     }
 
     if (System.getenv("NATS_PUBLISHER_ENABLED") != null
-        && System.getenv("NATS_PUBLISHER_ENABLED").equalsIgnoreCase("true")) {
+        && "true".equalsIgnoreCase(System.getenv("NATS_PUBLISHER_ENABLED"))) {
       String subject = System.getenv("NATS_PUBLISHER_SUBJECT");
       String natsUrl = System.getenv("NATS_PUBLISHER_URL");
       if (natsUrl == null) {
