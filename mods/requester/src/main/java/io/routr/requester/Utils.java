@@ -20,13 +20,14 @@ package io.routr.requester;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.security.SecureRandom;
 import java.util.Random;
 
 final public class Utils {
 
   // @Deprecated
   public static int generatePort(int min, int max) {
-    Random random = new Random();
+    Random random = new SecureRandom();
     return random.nextInt(max - min) + min;
   }
 
